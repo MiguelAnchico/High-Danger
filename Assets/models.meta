@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/models.meta
+guid: 187a90fdf247b634d83f5f0240ff03f2
+folderAsset: yes
+timeCreated: 1668713086
+========
+guid: c460fee2759b252409cd83d1508215ed
+folderAsset: yes
+timeCreated: 1668713319
+>>>>>>>> c44fdbb34fd580a6d117e22285ebfcbeea561bca:Assets/Scenes.meta
+licenseType: Free
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
