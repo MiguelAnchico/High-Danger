@@ -1,0 +1,17 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class MoveWithOculus : MonoBehaviour {
+	public GameObject oculusReference;
+	public Vector3 gap;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		this.transform.position = this.oculusReference.transform.position + gap;
+	}
+}
