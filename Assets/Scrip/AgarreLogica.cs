@@ -31,6 +31,7 @@ public class AgarreLogica : MonoBehaviour {
 			if (Object != null) {
 				Object.transform.parent = this.gameObject.transform;
 				Object.GetComponent<BoxCollider> ().isTrigger = true;
+				Object.GetComponent<CapsuleCollider> ().isTrigger = true;
 				ObjectTaken = Object;
 				Destroy (Object.GetComponent<Rigidbody> ());
 			}
@@ -48,8 +49,10 @@ public class AgarreLogica : MonoBehaviour {
 
 
 		if (contadorHembras == 0) {
+			Debug.Log ("Se suelts");
 			ObjectTaken.transform.parent = parentExit.transform;
 			ObjectTaken.GetComponent<BoxCollider> ().isTrigger = false;
+			ObjectTaken.GetComponent<CapsuleCollider> ().isTrigger = false;
 			ObjectTaken.AddComponent<Rigidbody> ();
 			ObjectTaken = null;
 		}
