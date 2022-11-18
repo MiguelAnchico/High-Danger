@@ -13,12 +13,14 @@ public class Soldadonse : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (tiempoDeSoldadura);
+
 		if (estaSoldandose) {
 			tiempoDeSoldadura -= Time.deltaTime;
+			//Debug.Log(tiempoDeSoldadura);
 		}
 
 		if (tiempoDeSoldadura < 0) {
+			GameController.Instance.SendMessage("prueba");
 			Destroy (this.gameObject);
 		}
 

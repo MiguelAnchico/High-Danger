@@ -24,4 +24,9 @@ public class GameController : MonoBehaviour {
 	
 	void Update () {
 	}
+
+	public void prueba()
+    {
+		Debug.Log("Prueba exitosa");
+    }
 }
