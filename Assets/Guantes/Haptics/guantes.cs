@@ -40,11 +40,11 @@ public class guantes : MonoBehaviour {
 		{
 			if (arduino.IsOpen)
 			{
-				Vibrate(Acc_Todos, VibracionLarga, 0);
+				Vibrate(Acc_Indices, VibracionLarga, 1);
 			}
 			if (arduino2.IsOpen)
 			{
-				Vibrate(Acc_Todos, VibracionLarga, 0);
+				Vibrate(Acc_Indices, VibracionLarga, 1);
 			}
 		}
 	}
