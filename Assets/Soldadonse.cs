@@ -35,6 +35,7 @@ public class Soldadonse : MonoBehaviour {
 	{
 		if(other.gameObject.CompareTag("Soldador")){
 			estaSoldandose = false;
+			//GameController.Instance.HapxelController.Vibrate(GameController.Instance.HapxelController.Acc_Centro
 		}
 	}
 }
