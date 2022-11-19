@@ -2,18 +2,24 @@
 using System.Collections;
 
 public class GeneratorCauticLogic : MonoBehaviour {
-
+	public float tiempoGenerate;
+	private bool canGenerate;
 	public GameObject Cautic;
 	public Vector3 gap;
 
 	// Use this for initialization
 	void Start () {
-		Generate ();
+		canGenerate = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		tiempoGenerate -= Time.deltaTime;
+
+		if (tiempoGenerate < 0 && canGenerate) {
+			Generate ();
+			canGenerate = false;
+		}
 	}
 
 	public void Generate(){
