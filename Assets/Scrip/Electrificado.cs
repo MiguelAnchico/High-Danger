@@ -18,8 +18,11 @@ public class Electrificado : MonoBehaviour {
 		tiempoDeElectrificado -= Time.deltaTime;
 
 		if (tiempoDeElectrificado < 0) {
-			tiempoDeElectrificado = Random.Range(10.0f, 16.0f);
+			tiempoDeElectrificado = Random.Range(2.0f, 3.0f);
+			SongController.Instance.playSound (SongController.Instance.SonidoElectrocucion);
 			if (isHandsInside) {
+				SongController.Instance.stopSound (SongController.Instance.SonidoElectrocucion);
+				SongController.Instance.playSound (SongController.Instance.SonidoDeMuerte);
 				GameController.Instance.HapxelController.checkVibrar = true;
 			}
 
