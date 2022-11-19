@@ -11,6 +11,9 @@ public class SongController : MonoBehaviour {
 	public int SonidoSoldar;
 	public int SonidoViento;
 	public int SonidoSucces;
+	public int SonidoGuia;
+	public int SonidoHectorTriste;
+	public int SonidoHectorHambr;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +24,9 @@ public class SongController : MonoBehaviour {
 		SonidoSoldar = 3;
 		SonidoViento = 4;
 		SonidoSucces = 5;
+		SonidoGuia = 6;
+		SonidoHectorTriste = 7;
+		SonidoHectorHambr = 8;
 		tiempoRanWind = Random.Range(15, 20);
 	}
 	

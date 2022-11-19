@@ -22,7 +22,7 @@ public class AgarreLogica : MonoBehaviour {
 	{
 		if(other.CompareTag("AgarreHembra")){
 			contadorHembras++;
-			Debug.Log ("Ajustado");
+			//Debug.Log ("Ajustado");
 		}
 
 		Object = LeftHandTrigger.GetComponent<getObject>().objectToTake;
@@ -49,7 +49,7 @@ public class AgarreLogica : MonoBehaviour {
 
 
 		if (contadorHembras == 0) {
-			Debug.Log ("Se suelts");
+			//Debug.Log ("Se suelts");
 			if (ObjectTaken) {
 				ObjectTaken.transform.parent = parentExit.transform;
 				ObjectTaken.GetComponent<BoxCollider> ().isTrigger = false;

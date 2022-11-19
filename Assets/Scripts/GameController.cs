@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
 	[Header("Settings")]
-	public GameObject player;
+	public GameObject player, electrocutador, pantallago;
 	public static GameController Instance;
 	public guantes HapxelController;
 	public GameObject SongOBJ;
@@ -25,7 +26,7 @@ public class GameController : MonoBehaviour {
 		if (Instance == null )
 		{
 			Instance = this;
-			DontDestroyOnLoad(this.gameObject);
+			//DontDestroyOnLoad(this.gameObject);
 		}
 		else
 		{
@@ -53,12 +54,13 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void durningAnimacionInicio() { 
-		//start audio guia
+		SongController.playSound (SongController.SonidoGuia);
 	
 	}
 	public void endAnimacionInicio()
 	{
 		isGame = true;
+		electrocutador.GetComponent<Electrificado> ().isDanado = true;
 	}
 
 
@@ -69,11 +71,11 @@ public class GameController : MonoBehaviour {
 	}
 	public void duringAnimacionFinal()
 	{
-		//audio de ganador
+		SongController.playSound (SongController.SonidoHectorHambr);
 	}
 
 	//game repair
-	void repairStart()
+	public void repairStart()
     {
 		//seleccionar los aleatorios malos
         int cant = (int)Mathf.Floor(aisladores.Length / 3);
@@ -143,7 +145,11 @@ public class GameController : MonoBehaviour {
 
 	public void gameOver()
     {
-		//sonido electrocutado
-		//active menu gameover
+		SongController.stopSound (1);SongController.stopSound (3);SongController.stopSound (4);SongController.stopSound (5);SongController.stopSound (6);SongController.stopSound (7);
+		repairEnd ();
+		pantallago.SetActive (true);
+	}
+	public void resetear(){
+		SceneManager.LoadScene (1);
 	}
 }

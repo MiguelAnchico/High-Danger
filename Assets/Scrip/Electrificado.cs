@@ -7,14 +7,14 @@ public class Electrificado : MonoBehaviour {
 	float cargaMax = 3f, cargaoMin = 1.5f;
 
 	public bool isElectrificado, isHandsInside, isDanado;
-	private SongController SongController;
 
 	// Use this for initialization
 	void Start () {
 		tiempoDescanso = Random.Range(descansoMin, descansoMax);
 		tiempoCargaElectrica = Random.Range(cargaoMin, cargaMax);
-		isElectrificado = isHandsInside = isDanado = false;
-		SongController = GameController.Instance.SongController.GetComponent<SongController> ();
+		isElectrificado = false;
+			isHandsInside = false;
+			isDanado = false;
 	}
 	
 	// Update is called once per frame
@@ -27,18 +27,18 @@ public class Electrificado : MonoBehaviour {
 			}
 			if (tiempoDescanso < 0) {
 				tiempoCargaElectrica -= Time.deltaTime;
-				SongController.playSound(SongController.SonidoElectrocucion);
+				GameController.Instance.SongController.playSound(GameController.Instance.SongController.SonidoElectrocucion);
 
 				if (isHandsInside)
 				{
-					SongController.stopSound(SongController.SonidoElectrocucion);
-					SongController.playSound(SongController.SonidoDeMuerte);
+					GameController.Instance.SongController.stopSound(GameController.Instance.SongController.SonidoElectrocucion);
+					GameController.Instance.SongController.playSound(GameController.Instance.SongController.SonidoDeMuerte);
 					GameController.Instance.gameOver();
 					GameController.Instance.HapxelController.checkVibrar = true;
 				}
 				if (tiempoCargaElectrica < 0)
 				{
-					SongController.stopSound(SongController.SonidoElectrocucion);
+					GameController.Instance.SongController.stopSound(GameController.Instance.SongController.SonidoElectrocucion);
 					tiempoDescanso = Random.Range(descansoMin, descansoMax);
 					tiempoCargaElectrica = Random.Range(cargaoMin, cargaMax);
 				}
