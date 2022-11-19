@@ -4,6 +4,7 @@ using System.Collections;
 public class GeneratorCauticLogic : MonoBehaviour {
 
 	public GameObject Cautic;
+	public Vector3 gap;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,9 @@ public class GeneratorCauticLogic : MonoBehaviour {
 	}
 
 	public void Generate(){
-		Instantiate (Cautic);
+		GameObject obj = Instantiate (Cautic);
+		Vector3 newRotation = -this.gameObject.transform.rotation.eulerAngles;
+		obj.transform.position = this.gameObject.transform.position + gap;
+		obj.transform.eulerAngles = newRotation;
 	}
 }
