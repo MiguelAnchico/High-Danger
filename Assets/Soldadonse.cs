@@ -3,25 +3,36 @@ using System.Collections;
 
 public class Soldadonse : MonoBehaviour {
 	public float tiempoDeSoldadura;
-	private bool estaSoldandose;
+	private bool estaSoldandose = false;
+	bool arreglado = false;
 
+	void OnEnable()
+    {
+		tiempoDeSoldadura = Random.Range(4.0f, 8.0f);
+	}
 	// Use this for initialization
 	void Start () {
-		tiempoDeSoldadura = Random.Range(4.0f, 8.0f);
-		estaSoldandose = false;
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (estaSoldandose) {
-			tiempoDeSoldadura -= Time.deltaTime;
-			//Debug.Log(tiempoDeSoldadura);
-		}
+		if (!arreglado)
+		{
+			if (estaSoldandose)
+			{
+				tiempoDeSoldadura -= Time.deltaTime;
+			}
 
-		if (tiempoDeSoldadura < 0) {
-			GameController.Instance.SendMessage("prueba");
-			Destroy (this.gameObject);
+			if (tiempoDeSoldadura < 0)
+			{
+				arreglado = true; //flag protección de ejecución
+				GameController.Instance.SendMessage("onFixed"); //avisar al controller que se arregló
+				Destroy (gameObject.GetComponent<Soldadonse>()); //remueve el componente para evitar más soldadura
+				
+				
+			}
 		}
 
 	}
