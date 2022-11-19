@@ -50,11 +50,14 @@ public class AgarreLogica : MonoBehaviour {
 
 		if (contadorHembras == 0) {
 			Debug.Log ("Se suelts");
-			ObjectTaken.transform.parent = parentExit.transform;
-			ObjectTaken.GetComponent<BoxCollider> ().isTrigger = false;
-			ObjectTaken.GetComponent<CapsuleCollider> ().isTrigger = false;
-			ObjectTaken.AddComponent<Rigidbody> ();
-			ObjectTaken = null;
+			if (ObjectTaken) {
+				ObjectTaken.transform.parent = parentExit.transform;
+				ObjectTaken.GetComponent<BoxCollider> ().isTrigger = false;
+				ObjectTaken.GetComponent<CapsuleCollider> ().isTrigger = false;
+				ObjectTaken.AddComponent<Rigidbody> ();
+				ObjectTaken = null;
+			}
+
 		}
 
 	}
