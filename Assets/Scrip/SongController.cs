@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class SongController : MonoBehaviour {
-	public static SongController Instance;
 	public AudioSource[] audios;
 
 	public int SonidoAmbiente;
