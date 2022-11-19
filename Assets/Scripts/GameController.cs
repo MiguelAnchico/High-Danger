@@ -19,14 +19,29 @@ public class GameController : MonoBehaviour {
 		}
 	}
 	void Start () {
-		HapxelController = gameObject.GetComponent<guantes>();	
+		HapxelController = gameObject.GetComponent<guantes>();
+		//iniciar animación
+		//ejecutar audio historia
+		//activar entorno (preparar aleatorios)
+		//activar cautil
+
 	}
 	
 	void Update () {
 	}
 
+	void iniciar()
+    {
+		//comenzar animación
+		//comenzar audio - 3 segundos de pausa
+    }
+	public void endAnimacion() { 
+	
+	}
 	public void prueba()
     {
 		Debug.Log("Prueba exitosa");
     }
+
+
 }
