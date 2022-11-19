@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour {
 	public Material ceramica, dañado;
 	[SerializeField] List<int> escogidos = new List<int>();
 	public GameObject aisladorActual;
+	[Header("Game Control")]
+	public bool isGame;
 
 	void Awake() {
 		if (Instance == null )
@@ -31,6 +33,8 @@ public class GameController : MonoBehaviour {
 		}
 	}
 	void Start () {
+		//inicializar variables
+		isGame = false;
 		//asignar controladores hijos
 		HapxelController = gameObject.GetComponent<guantes>();
 		SongController = SongOBJ.GetComponent<SongController>();
@@ -52,6 +56,13 @@ public class GameController : MonoBehaviour {
 		//start audio guia
 	
 	}
+	public void endAnimacionInicio()
+	{
+		isGame = true;
+	}
+
+
+		
 	void startAnimacionFinal()
 	{
 		player.GetComponent<Animator>().SetTrigger("end");
