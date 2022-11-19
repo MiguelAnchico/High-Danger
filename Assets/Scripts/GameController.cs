@@ -147,9 +147,10 @@ public class GameController : MonoBehaviour {
     {
 		SongController.stopSound (1);SongController.stopSound (3);SongController.stopSound (4);SongController.stopSound (5);SongController.stopSound (6);SongController.stopSound (7);
 		repairEnd ();
+		electrocutador.GetComponent<Electrificado> ().isDanado = false;
 		pantallago.SetActive (true);
 	}
 	public void resetear(){
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene (0);
 	}
 }
