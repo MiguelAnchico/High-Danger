@@ -9,6 +9,7 @@ public class SongController : MonoBehaviour {
 	public int SonidoDeMuerte;
 	public int SonidoSoldar;
 	public int SonidoViento;
+	public int SonidoSucces;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +19,7 @@ public class SongController : MonoBehaviour {
 		SonidoDeMuerte = 2;
 		SonidoSoldar = 3;
 		SonidoViento = 4;
-
-		Debug.Log (this.GetComponents<AudioSource> ());
+		SonidoSucces = 5;
 	}
 	
 	// Update is called once per frame
