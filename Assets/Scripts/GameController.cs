@@ -6,16 +6,19 @@ using System.Linq;
 
 public class GameController : MonoBehaviour {
 
+	[Header("Settings")]
+	public GameObject player;
 	public static GameController Instance;
 	public guantes HapxelController;
 	public GameObject SongOBJ;
-	SongController SongController;
+	public SongController SongController;
 	public bool activo = false;
-	// Game
+	[Header("Game")]
 	public GameObject[] aisladores;
 	public Material ceramica, dañado;
 	[SerializeField] List<int> escogidos = new List<int>();
 	public GameObject aisladorActual;
+
 	void Awake() {
 		if (Instance == null )
 		{
@@ -32,7 +35,6 @@ public class GameController : MonoBehaviour {
 		HapxelController = gameObject.GetComponent<guantes>();
 		SongController = SongOBJ.GetComponent<SongController>();
 
-		//iniciar animación
 		//ejecutar audio historia
 		//activar entorno 
 		//preparar aleatorios
@@ -43,27 +45,20 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void Update () {
-	}
-
-	void iniciar()
-    {
-		//comenzar animación
-		//comenzar audio - 3 segundos de pausa
-    }
-	void startAnimacionInicio()
-	{
 
 	}
-	void endAnimacionInicio() { 
+
+	public void durningAnimacionInicio() { 
+		//start audio guia
 	
 	}
 	void startAnimacionFinal()
 	{
-
+		player.GetComponent<Animator>().SetTrigger("end");
 	}
-	void endAnimacionFinal()
+	public void duringAnimacionFinal()
 	{
-
+		//audio de ganador
 	}
 
 	//game repair
@@ -90,6 +85,21 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	void repairEnd()
+	{
+		//limpiar los aleatorios malos
+		escogidos.Clear();
+		//setear todas las cerámicas
+		for (int i = 0; i < aisladores.Length; i++)
+		{
+			aisladores[i].GetComponent<Renderer>().material = ceramica;
+			if(aisladores[i].GetComponent<Soldadonse>())
+            {
+				Destroy(aisladores[i].GetComponent<Soldadonse>());
+            }
+		}
+	}
+
 	void dañarSiguiente() {
 		if (escogidos.Count > 0)
 		{
@@ -107,7 +117,7 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-	void onFixed()
+	public void onFixed()
     {
 		aisladorActual.GetComponent<Renderer>().material = ceramica;
 		dañarSiguiente();
@@ -115,15 +125,13 @@ public class GameController : MonoBehaviour {
 
 	void ganoJuego()
     {
-		Debug.Log("GANASTE");
+		repairEnd();
+		startAnimacionFinal();
 		//desactivar cautil
-		//audio de ganador
-		//animacion salida
     }
 
-	void gameOver()
+	public void gameOver()
     {
-		Debug.Log("PERDISTE");
 		//sonido electrocutado
 		//active menu gameover
 	}

@@ -23,15 +23,18 @@ public class Soldadonse : MonoBehaviour {
 			if (estaSoldandose)
 			{
 				tiempoDeSoldadura -= Time.deltaTime;
+			
 			}
 
 			if (tiempoDeSoldadura < 0)
 			{
+				GameController.Instance.SongController.stopSound(GameController.Instance.SongController.SonidoSoldar); //detener soldadua
+				guantes Hapxel = GameController.Instance.HapxelController;
+				Hapxel.VibrateEspc(Hapxel.Acc_Indices, Hapxel.VibracionCorta, 0); //vibración de aprobado
+				GameController.Instance.SongController.playSound(5);
 				arreglado = true; //flag protección de ejecución
 				GameController.Instance.SendMessage("onFixed"); //avisar al controller que se arregló
 				Destroy (gameObject.GetComponent<Soldadonse>()); //remueve el componente para evitar más soldadura
-				
-				
 			}
 		}
 
@@ -41,6 +44,9 @@ public class Soldadonse : MonoBehaviour {
 	{
 		if(other.gameObject.CompareTag("Soldador")){
 			estaSoldandose = true;
+			GameController.Instance.SongController.playSound(GameController.Instance.SongController.SonidoSoldar);
+			guantes Hapxel = GameController.Instance.HapxelController;
+			Hapxel.VibrateEspc(Hapxel.Acc_Indices, Hapxel.VibracionCorta, 0);
 		}
 	}
 
@@ -48,7 +54,8 @@ public class Soldadonse : MonoBehaviour {
 	{
 		if(other.gameObject.CompareTag("Soldador")){
 			estaSoldandose = false;
-			//GameController.Instance.HapxelController.Vibrate(GameController.Instance.HapxelController.Acc_Centro
+			GameController.Instance.SongController.stopSound(GameController.Instance.SongController.SonidoSoldar);
+			
 		}
 	}
 }
