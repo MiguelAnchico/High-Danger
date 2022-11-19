@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Soldadonse : MonoBehaviour {
 	public float tiempoDeSoldadura;
-	private bool estaSoldandose = false;
-	bool arreglado = false;
+	[SerializeField] bool estaSoldandose = false;
+	[SerializeField] bool arreglado = false;
 
 	void OnEnable()
     {

@@ -87,11 +87,11 @@ public class guantes : MonoBehaviour {
 	}
 
 	public void StartVibrate(){
-		Debug.Log ("Corriendo en otro hilo..");
+		//Debug.Log ("Corriendo en otro hilo..");
 		while (isAlive) {
 			if (checkVibrar)
 			{
-				Debug.Log ("Q..");
+				//Debug.Log ("Q..");
 				if (arduino.IsOpen)
 				{
 					VibrateAll (Acc_Todos, VibracionLarga, 0);
