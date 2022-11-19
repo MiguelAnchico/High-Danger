@@ -13,5 +13,6 @@ public class MoveWithOculus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		this.transform.position = this.oculusReference.transform.position + gap;
+		//this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, oculusReference.transform.rotation.eulerAngles.y, this.transform.rotation.eulerAngles.z);
 	}
 }
