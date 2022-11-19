@@ -19,10 +19,15 @@ public class guantes : MonoBehaviour {
 	public string[] Acc_Pulgares = new string[] { "A" };
 	public string[] Acc_Centro = new string[] { "B" }; //solo derecha
 	public int VibracionLarga = 9, VibracionCorta = 3, VibracionBreve= 5;
+	public Thread internalThread;
+	private bool isAlive = true;
+	public bool checkVibrar = false;
 
 	void Start () {
 		arduino = new SerialPort(Puerto_DERECHA, 9600);
 		arduino2 = new SerialPort(Puerto_IZQUIERDA, 9600);
+
+
 		try
 		{
 			arduino.Open();
@@ -33,23 +38,16 @@ public class guantes : MonoBehaviour {
 			arduino2.Open();
 		}
 		catch { Debug.LogError("No se detectan el puerto izquierda"); }
+
+		internalThread = new Thread (StartVibrate);
+		internalThread.Start ();
 	}
 	
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			if (arduino.IsOpen)
-			{
-				Vibrate(Acc_Indices, VibracionLarga, 1);
-			}
-			if (arduino2.IsOpen)
-			{
-				Vibrate(Acc_Indices, VibracionLarga, 1);
-			}
-		}
+
 	}
 
-	public void Vibrate(string[] referencias, int rep, int mano = 0)
+	public void VibrateAll(string[] referencias, int rep, int mano = 0)
 	{
 		SerialPort[] ardu;
 		ardu = mano >= 1 ? new SerialPort[] { arduino } : mano <= -1 ? new SerialPort[] { arduino2 }  : new SerialPort[] { arduino, arduino2 };
@@ -60,9 +58,56 @@ public class guantes : MonoBehaviour {
 					for (int k = 0; k < ardu.Length; k++)
 					{
 						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
+						ardu[k].Write(referencias[i]);
 					}
 				}
 			}
 	}
 
+	public void VibrateEspc(string[] referencias, int rep, int mano = 0)
+	{
+		SerialPort[] ardu;
+		ardu = mano >= 1 ? new SerialPort[] { arduino } : mano <= -1 ? new SerialPort[] { arduino2 }  : new SerialPort[] { arduino, arduino2 };
+		for (int j = 0; j < rep; j++) 
+		{
+			for (int i = 0; i < referencias.Length; i++)
+			{
+				for (int k = 0; k < ardu.Length; k++)
+				{
+					ardu[k].Write(referencias[i]);
+				}
+			}
+		}
+	}
+
+	public void StartVibrate(){
+		Debug.Log ("Corriendo en otro hilo..");
+		while (isAlive) {
+			if (checkVibrar)
+			{
+				Debug.Log ("Q..");
+				if (arduino.IsOpen)
+				{
+					VibrateAll (Acc_Todos, VibracionLarga, 0);
+				}
+				if (arduino2.IsOpen)
+				{
+					VibrateAll (Acc_Todos, VibracionLarga, 0);
+					//StartCoroutine(VibrateAll(Acc_Todos, VibracionLarga, 0));
+				}
+				checkVibrar = false;
+			}
+
+		}
+	}
+
+	private void OnApplicationQuit() {
+		isAlive = false;
+	}
 }
