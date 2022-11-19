@@ -5,12 +5,14 @@ public class Electrificado : MonoBehaviour {
 	public float tiempoDeElectrificado;
 	public bool isElectrificado;
 	public bool isHandsInside;
+	private SongController SongController;
 
 	// Use this for initialization
 	void Start () {
 		tiempoDeElectrificado = Random.Range(10.0f, 16.0f);
 		isElectrificado = false;
 		isHandsInside = false;
+		SongController = GameController.Instance.SongOBJ.GetComponent<SongController> ();
 	}
 	
 	// Update is called once per frame
@@ -19,12 +21,14 @@ public class Electrificado : MonoBehaviour {
 
 		if (tiempoDeElectrificado < 0) {
 			tiempoDeElectrificado = Random.Range(2.0f, 3.0f);
-			/*SongController.Instance.playSound (SongController.Instance.SonidoElectrocucion);
+			SongController.playSound (SongController.SonidoElectrocucion);
+
 			if (isHandsInside) {
-				SongController.Instance.stopSound (SongController.Instance.SonidoElectrocucion);
-				SongController.Instance.playSound (SongController.Instance.SonidoDeMuerte);
+				SongController.stopSound (SongController.SonidoElectrocucion);
+				SongController.playSound (SongController.SonidoDeMuerte);
+				//GameController.Instance.gameOver ();
 				GameController.Instance.HapxelController.checkVibrar = true;
-			}*/
+			}
 
 		}
 	}

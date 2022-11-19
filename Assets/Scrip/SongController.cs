@@ -28,8 +28,7 @@ public class SongController : MonoBehaviour {
 	}
 
 	public void playSound(int audioPosition){
-		Debug.Log (audios[audioPosition].clip);
-		//audios [audioPosition].Play ();
+		audios [audioPosition].Play ();
 	}
 
 	public void stopSound(int audioPosition){
