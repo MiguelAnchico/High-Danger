@@ -4,7 +4,7 @@ using System.Collections;
 public class Soldadonse : MonoBehaviour {
 	public float tiempoDeSoldadura;
 	[SerializeField] bool estaSoldandose = false;
-	[SerializeField] bool arreglado = false;
+	[SerializeField] bool arreglado;
 
 	void OnEnable()
     {
@@ -12,7 +12,7 @@ public class Soldadonse : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		
+		arreglado = false;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +20,7 @@ public class Soldadonse : MonoBehaviour {
 
 		if (!arreglado)
 		{
+			
 			if (estaSoldandose)
 			{
 				tiempoDeSoldadura -= Time.deltaTime;
